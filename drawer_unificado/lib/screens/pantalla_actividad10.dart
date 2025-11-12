@@ -35,7 +35,7 @@ class _PantallaActividad10State extends State<PantallaActividad10> {
       appBar: AppBar(
         title: const Center(
           child: Text(
-            'Contador de clics (E10)',
+            'Contador de clics',
             style: TextStyle(
               fontStyle: FontStyle.italic,
               fontWeight: FontWeight.w900,
