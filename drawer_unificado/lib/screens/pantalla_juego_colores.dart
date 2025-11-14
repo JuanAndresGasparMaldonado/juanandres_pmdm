@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:drawer_unificado/widgets/menu_drawer.dart';
 import 'dart:math';
 import 'dart:async';
-
-void main() {
-  runApp(const RandomColors());
-}
 
 class RandomColors extends StatefulWidget {
   const RandomColors({super.key});
@@ -34,47 +31,60 @@ class _RandomColors extends State<RandomColors> {
 
   void timer() {
     Timer.periodic(const Duration(milliseconds: 1000), (timer) {
-      getRandomColor();
-      getRandomName();
-      setState(() {});
+      // Nos aseguramos de que el widget siga "montado" antes de actualizar
+      if (mounted) {
+        getRandomColor();
+        getRandomName();
+        setState(() {});
+      } else {
+        timer.cancel(); // Si el widget se elimina, detenemos el timer
+      }
     });
   }
+  
+  // Añadido dispose para limpiar el timer cuando sales de la pantalla
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: Colors.white,
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(
-              'Puntos: $points',
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-            ),
-            Center(
-              child: GestureDetector(
-                onTap: () {
-                  onGiftTap(randomName, randomColor);
-                },
-                child: Column(
-                  children: [
-                    Container(width: 120, color: randomColor, height: 120),
-                    Text(
-                      randomName,
-                      style: TextStyle(
-                        color: randomColor,
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold,
-                      ),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: const Text('Juego Colores (E12)'),
+      ),
+      drawer: const MenuDrawer(),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Text(
+            'Puntos: $points',
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+          ),
+          Center(
+            child: GestureDetector(
+              onTap: () {
+                onGiftTap(randomName, randomColor);
+              },
+              child: Column(
+                children: [
+                  Container(width: 120, color: randomColor, height: 120),
+                  Text(
+                    randomName,
+                    style: TextStyle(
+                      color: randomColor,
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

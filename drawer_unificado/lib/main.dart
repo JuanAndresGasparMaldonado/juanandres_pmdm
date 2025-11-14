@@ -14,7 +14,39 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Actividades Unificadas',
       theme: ThemeData(
+        // Usamos un color base (azul)
         primarySwatch: Colors.blue,
+        
+        // Personalización de Scaffolds (fondo de pantalla de las apps)
+        scaffoldBackgroundColor: Colors.grey[100], // Un gris muy claro
+
+        // Personalización de los AppBars
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.blue, // Fondo azul
+          foregroundColor: Colors.white, // Iconos y texto de la barra en blanco
+          elevation: 2, // Una sombra ligera
+          // Estilo para el título del AppBar
+          titleTextStyle: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+
+        // Personalización de Textos
+        textTheme: const TextTheme(
+          // Estilo por defecto para la mayoría de textos (ej. en el body)
+          bodyMedium: TextStyle(
+            fontSize: 16,
+            color: Colors.black87, // Un negro no tan intenso
+          ),
+          // Estilo para títulos o textos destacados
+          headlineSmall: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
       ),
       
       // Punto 2: Rutas nombradas (esto ya lo tenías bien)
