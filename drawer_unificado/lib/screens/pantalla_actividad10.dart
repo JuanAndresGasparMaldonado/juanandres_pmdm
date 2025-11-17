@@ -70,6 +70,7 @@ class _PantallaActividad10State extends State<PantallaActividad10> {
             CrossAxisAlignment.end, // Alinea los botones a la derecha
         children: [
           FloatingActionButton(
+            heroTag: 'btnincrementar',
             onPressed: _incrementar,
             tooltip: 'Increment',
             backgroundColor: Colors.green[300],
@@ -77,6 +78,7 @@ class _PantallaActividad10State extends State<PantallaActividad10> {
           ),
           const SizedBox(height: 16),
           FloatingActionButton(
+            heroTag: 'btndecrementar',
             onPressed: _decrementar,
             tooltip: 'Decrement',
             backgroundColor: Colors.red[300],
@@ -84,6 +86,7 @@ class _PantallaActividad10State extends State<PantallaActividad10> {
           ),
           const SizedBox(height: 16),
           FloatingActionButton(
+            heroTag: 'btnreset',
             onPressed: _puestaacero,
             tooltip: 'Reset',
             backgroundColor: Colors.grey[400],

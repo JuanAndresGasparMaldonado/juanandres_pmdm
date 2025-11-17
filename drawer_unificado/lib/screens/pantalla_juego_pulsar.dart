@@ -7,7 +7,7 @@ class PantallaJuegoPulsar extends StatefulWidget {
   const PantallaJuegoPulsar({super.key});
 
   @override
-  _PantallaJuegoPulsarState createState() => _PantallaJuegoPulsarState();
+  State <PantallaJuegoPulsar> createState() => _PantallaJuegoPulsarState();
 }
 
 class _PantallaJuegoPulsarState extends State<PantallaJuegoPulsar> {
@@ -20,9 +20,6 @@ class _PantallaJuegoPulsarState extends State<PantallaJuegoPulsar> {
   // Posición aleatoria de la imagen
   double _top = 0;
   double _left = 0;
-  // Imagen que se mostrará
-  String _imagenUrl =
-      'https://placehold.co/80x80/FF0000/FFFFFF?text=ATR%C3%81PAME!';
   bool _imagenVisible = false;
 
   final Random _random = Random();
@@ -169,10 +166,10 @@ class _PantallaJuegoPulsarState extends State<PantallaJuegoPulsar> {
                   left: _left,
                   child: GestureDetector(
                     onTap: _onTapImagen, // Detecta taps solo en la imagen
-                    child: Container(
+                    child: SizedBox(
                       width: 80,
                       height: 80,
-                      child: Image.network(_imagenUrl, fit: BoxFit.cover),
+                      child: Image.asset('assets/image1.jpg', fit: BoxFit.cover),
                     ),
                   ),
                 ),
