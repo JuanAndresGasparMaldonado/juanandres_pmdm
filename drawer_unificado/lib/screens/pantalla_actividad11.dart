@@ -14,6 +14,7 @@ class PantallaActividad11 extends StatelessWidget {
         backgroundColor:
             Colors.grey[50], // un color de fondo casi blanco como el de instagram
         elevation: 0,
+        iconTheme: const IconThemeData(color: Colors.black),
         title: Row(
           children: const [
             // Mi nombre de instagram
