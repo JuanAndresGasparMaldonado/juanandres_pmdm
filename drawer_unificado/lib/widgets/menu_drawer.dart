@@ -105,10 +105,6 @@ class MenuDrawer extends StatelessWidget {
               Navigator.pushReplacementNamed(context, '/clon_ui');
             },
           ),
-
-          const Divider(), // Separador para la nueva entrega
-
-          // --- (NUEVO) Entrega 5 ---
           ListTile(
             leading: const Icon(Icons.palette_outlined),
             title: const Text('Juego Colores (E12)'), // Punto 4

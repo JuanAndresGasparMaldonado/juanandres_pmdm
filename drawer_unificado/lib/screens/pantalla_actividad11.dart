@@ -341,7 +341,7 @@ class PantallaActividad11 extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
               Image.network(
-                'httpsS://picsum.photos/seed/img7/200/200',
+                'https://picsum.photos/seed/img7/200/200',
                 fit: BoxFit.cover,
               ),
               Image.network(
