@@ -11,12 +11,12 @@ class MenuDrawer extends StatelessWidget {
         children: [
           UserAccountsDrawerHeader(
             accountName: const Text("Juan Andrés Gaspar"),
-            accountEmail: const Text("juanandresgasparmaldonado@gmail.com"),
+            accountEmail: const Text("jgasmal2702@g.educaand.es"),
             currentAccountPicture: const CircleAvatar(
               backgroundImage: AssetImage("assets/image1cara.png"),
             ),
             decoration: const BoxDecoration(
-              color: Colors.blueAccent,
+              color:  Colors.green
             ),
           ),
 

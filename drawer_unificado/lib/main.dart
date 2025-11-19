@@ -14,15 +14,15 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Actividades Unificadas',
       theme: ThemeData(
-        // Usamos un color base (azul)
-        primarySwatch: Colors.blue,
+        // Usamos un color base (verde)
+        primarySwatch: Colors.green,
         
         // Personalización de Scaffolds (fondo de pantalla de las apps)
         scaffoldBackgroundColor: Colors.grey[100], // Un gris muy claro
 
         // Personalización de los AppBars
         appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.blue, // Fondo azul
+          backgroundColor: Colors.green, // Fondo azul
           foregroundColor: Colors.white, // Iconos y texto de la barra en blanco
           elevation: 2, // Una sombra ligera
           // Estilo para el título del AppBar
