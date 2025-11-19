@@ -1,4 +1,5 @@
 export 'home_screen.dart'; // pantalla de inicio
+export 'splash_screen.dart'; // pantalla de bienvenida
 
 // Pantallas de Entregas 1-4
 export 'pantalla_actividad1.dart';

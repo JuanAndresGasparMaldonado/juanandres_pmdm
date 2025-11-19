@@ -52,7 +52,8 @@ class MyApp extends StatelessWidget {
       // Punto 2: Rutas nombradas (esto ya lo tenías bien)
       initialRoute: '/',
       routes: {
-        '/': (context) => const HomeScreen(),
+        '/': (context) => const SplashScreen(),
+        '/home': (context) => const HomeScreen(),
         
         // Rutas Entregas 1-4
         '/nombre': (context) => const PantallaNombre(),
