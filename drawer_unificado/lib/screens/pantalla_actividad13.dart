@@ -126,7 +126,7 @@ class _PantallaJuegoPulsarState extends State<PantallaJuegoPulsar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Pulsar Imagen (Ejer 13)')),
+      appBar: AppBar(title: const Text('Pulsar Imagen (E13)')),
       drawer: const MenuDrawer(),
       body: GestureDetector(
         onTap: _onTapFondo, // Detecta taps en el fondo

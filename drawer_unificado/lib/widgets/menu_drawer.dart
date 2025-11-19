@@ -51,14 +51,14 @@ class MenuDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.rowing),
-            title: const Text('5 Iconos (Filas) (E4)'),
+            title: const Text('5 Iconos (E4)'),
             onTap: () {
               Navigator.pushReplacementNamed(context, '/iconos');
             },
           ),
           ListTile(
             leading: const Icon(Icons.view_column),
-            title: const Text('5 Imágenes (Columnas) (E5)'),
+            title: const Text('5 Imágenes (E5)'),
             onTap: () {
               Navigator.pushReplacementNamed(context, '/imagenes');
             },

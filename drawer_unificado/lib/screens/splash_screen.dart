@@ -43,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
             const Icon(Icons.sports_tennis, size: 120, color: Colors.white),
             const SizedBox(height: 20),
             const Text(
-              "Torneo ATP",
+              "APP PMDM",
               style: TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,

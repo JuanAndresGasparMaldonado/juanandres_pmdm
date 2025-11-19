@@ -7,7 +7,7 @@ class PantallaFoto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Foto e Identidad")),
+      appBar: AppBar(title: const Text("Foto e Identidad (E2)")),
       drawer: const MenuDrawer(),
       body: Center(
         child: Column(

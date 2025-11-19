@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:drawer_unificado/widgets/menu_drawer.dart';
+import 'package:url_launcher/url_launcher.dart'; // Import necesario
 
 class PantallaActividad11 extends StatelessWidget {
   const PantallaActividad11({super.key});
-  //Esta pantalla simula un perfil de Instagram con varios elementos e imágenes de ejemplo:
+
+  // Función para abrir enlaces externos
+  Future<void> _lanzarURL(String url) async {
+    final Uri uri = Uri.parse(url);
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+      throw Exception('No se pudo abrir $url');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const MenuDrawer(),
-      // La barra superior
       appBar: AppBar(
-        backgroundColor:
-            Colors.grey[50], // un color de fondo casi blanco como el de instagram
+        backgroundColor: Colors.grey[50],
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.black),
         title: Row(
           children: const [
-            // Mi nombre de instagram
             Text(
               'andressjgaspar',
               style: TextStyle(
@@ -26,7 +31,7 @@ class PantallaActividad11 extends StatelessWidget {
               ),
             ),
             SizedBox(width: 4),
-            Icon(Icons.verified, color: Colors.blue, size: 18), // icono de verificado azul
+            Icon(Icons.verified, color: Colors.blue, size: 18),
           ],
         ),
         actions: [
@@ -40,13 +45,14 @@ class PantallaActividad11 extends StatelessWidget {
           ),
         ],
       ),
+      // ListView hace que sea responsive (scrollable)
       body: ListView(
         children: [
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Row(
               children: [
-                // Aquí va la foto de perfil con borde degradado
+                // Foto de perfil
                 Container(
                   width: 90,
                   height: 90,
@@ -66,7 +72,6 @@ class PantallaActividad11 extends StatelessWidget {
                       ),
                       child: const CircleAvatar(
                         backgroundColor: Colors.grey,
-                        // Foto obtenida de internet como imagen de perfil de ejemplo
                         backgroundImage: NetworkImage(
                           'https://picsum.photos/seed/miperfil/200/200',
                         ),
@@ -75,7 +80,7 @@ class PantallaActividad11 extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 20),
-                // El número de seguidores
+                // Estadísticas
                 Expanded(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -89,7 +94,7 @@ class PantallaActividad11 extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Text('Posts', style: TextStyle(fontSize: 14)),
+                          Text('Posts'),
                         ],
                       ),
                       Column(
@@ -101,7 +106,7 @@ class PantallaActividad11 extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Text('Followers', style: TextStyle(fontSize: 14)),
+                          Text('Followers'),
                         ],
                       ),
                       Column(
@@ -113,7 +118,7 @@ class PantallaActividad11 extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Text('Following', style: TextStyle(fontSize: 14)),
+                          Text('Following'),
                         ],
                       ),
                     ],
@@ -122,27 +127,71 @@ class PantallaActividad11 extends StatelessWidget {
               ],
             ),
           ),
-          // Mis datos de perfil
+          // --- DATOS DEL PERFIL Y ENLACES ---
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
+              children: [
+                const Text(
                   'Juan Andres Gaspar Maldonado',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
                 ),
-                Text(
-                  'Estudiante de DAM',
+                const Text(
+                  'Estudiante de DAM - IES Pablo Picasso',
                   style: TextStyle(color: Colors.black87, fontSize: 14),
                 ),
-                Text('IES Pablo Picasso', style: TextStyle(fontSize: 14)),
-                Text(
-                  'Instagram: @andressjgaspar',
-                  style: TextStyle(fontSize: 14, color: Colors.blue),
+                const SizedBox(height: 5),
+
+                // ENLACE 1: GITHUB
+                GestureDetector(
+                  onTap: () => _lanzarURL(
+                    'https://github.com/juanandresgasparmaldonado/juanandres_pmdm',
+                  ),
+                  child: Row(
+                    children: const [
+                      Icon(Icons.link, size: 16, color: Colors.blue),
+                      SizedBox(width: 4),
+                      Text(
+                        'GitHub: juanandres_pmdm',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                SizedBox(height: 4),
-                Text(
+
+                const SizedBox(height: 4),
+
+                // ENLACE 2: INSTAGRAM
+                GestureDetector(
+                  onTap: () =>
+                      _lanzarURL('https://www.instagram.com/andressjgaspar/'),
+                  child: Row(
+                    children: const [
+                      Icon(
+                        Icons.camera_alt_outlined,
+                        size: 16,
+                        color: Colors.purple,
+                      ),
+                      SizedBox(width: 4),
+                      Text(
+                        'Instagram: @andressjgaspar',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.purple,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                const SizedBox(height: 4),
+                const Text(
                   'Followed by ibai, auronplay and 99 others',
                   style: TextStyle(fontSize: 12, color: Colors.grey),
                 ),
@@ -150,7 +199,8 @@ class PantallaActividad11 extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          // Los botones de seguir
+
+          // Botones de acción
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Row(
@@ -158,9 +208,6 @@ class PantallaActividad11 extends StatelessWidget {
                 Expanded(
                   child: OutlinedButton(
                     onPressed: () {},
-                    style: OutlinedButton.styleFrom(
-                      side: const BorderSide(color: Colors.grey),
-                    ),
                     child: const Text(
                       'Seguir',
                       style: TextStyle(color: Colors.black),
@@ -171,9 +218,6 @@ class PantallaActividad11 extends StatelessWidget {
                 Expanded(
                   child: OutlinedButton(
                     onPressed: () {},
-                    style: OutlinedButton.styleFrom(
-                      side: const BorderSide(color: Colors.grey),
-                    ),
                     child: const Text(
                       'Mensaje',
                       style: TextStyle(color: Colors.black),
@@ -183,10 +227,6 @@ class PantallaActividad11 extends StatelessWidget {
                 const SizedBox(width: 8),
                 OutlinedButton(
                   onPressed: () {},
-                  style: OutlinedButton.styleFrom(
-                    side: const BorderSide(color: Colors.grey),
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                  ),
                   child: const Icon(
                     Icons.person_add_outlined,
                     color: Colors.black,
@@ -198,163 +238,57 @@ class PantallaActividad11 extends StatelessWidget {
           ),
           const SizedBox(height: 16),
 
-          // Los circulos de las historias
+          // Historias (Stories)
           SizedBox(
             height: 90,
             child: ListView(
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 16),
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 12.0),
-                  child: Column(
-                    children: [
-                      Container(
-                        width: 65,
-                        height: 65,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.blue[100],
-                        ),
-                        child: Icon(
-                          Icons.travel_explore,
-                          color: Colors.blue[800],
-                          size: 30,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      const Text('Viajes', style: TextStyle(fontSize: 11)),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 12.0),
-                  child: Column(
-                    children: [
-                      Container(
-                        width: 65,
-                        height: 65,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.green[100],
-                        ),
-                        child: Icon(
-                          Icons.fastfood_outlined,
-                          color: Colors.green[800],
-                          size: 30,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      const Text('Comida', style: TextStyle(fontSize: 11)),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 12.0),
-                  child: Column(
-                    children: [
-                      Container(
-                        width: 65,
-                        height: 65,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.orange[100],
-                        ),
-                        child: Icon(
-                          Icons.pets,
-                          color: Colors.orange[800],
-                          size: 30,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      const Text('Mascotas', style: TextStyle(fontSize: 11)),
-                    ],
-                  ),
-                ),
+                _crearHistoria('Viajes', Icons.travel_explore, Colors.blue),
+                _crearHistoria('Comida', Icons.fastfood_outlined, Colors.green),
+                _crearHistoria('Mascotas', Icons.pets, Colors.orange),
               ],
             ),
           ),
-
           const SizedBox(height: 16),
-
-          // Las pestañas de las fotos
-          Row(
-            children: [
-              Expanded(
-                child: IconButton(
-                  icon: const Icon(
-                    Icons.grid_on,
-                    color: Colors.blue, // color para mostrar que está activo
-                  ),
-                  onPressed: () {},
-                ),
-              ),
-              Expanded(
-                child: IconButton(
-                  icon: const Icon(Icons.video_collection_outlined),
-                  onPressed: () {},
-                  color: Colors.grey,
-                ),
-              ),
-              Expanded(
-                child: IconButton(
-                  icon: const Icon(Icons.person_pin_outlined),
-                  onPressed: () {},
-                  color: Colors.grey,
-                ),
-              ),
-            ],
-          ),
-
           const Divider(height: 1),
 
-          // Las fotos de abajo
+          // Grid de fotos
           GridView.count(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             crossAxisCount: 3,
             mainAxisSpacing: 1.5,
             crossAxisSpacing: 1.5,
-            children: [
-              // Fotos obtenidas de internet para utilizar como publicaciones de ejemplo
-              Image.network(
-                'https://picsum.photos/seed/img1/200/200',
+            children: List.generate(9, (index) {
+              return Image.network(
+                'https://picsum.photos/seed/img${index + 1}/200/200', // CORREGIDO: https (sin S extra)
                 fit: BoxFit.cover,
-              ),
-              Image.network(
-                'https://picsum.photos/seed/img2/200/200',
-                fit: BoxFit.cover,
-              ),
-              Image.network(
-                'https://picsum.photos/seed/img3/200/200',
-                fit: BoxFit.cover,
-              ),
-              Image.network(
-                'https://picsum.photos/seed/img4/200/200',
-                fit: BoxFit.cover,
-              ),
-              Image.network(
-                'https://picsum.photos/seed/img5/200/200',
-                fit: BoxFit.cover,
-              ),
-              Image.network(
-                'https://picsum.photos/seed/img6/200/200',
-                fit: BoxFit.cover,
-              ),
-              Image.network(
-                'https://picsum.photos/seed/img7/200/200',
-                fit: BoxFit.cover,
-              ),
-              Image.network(
-                'https://picsum.photos/seed/img8/200/200',
-                fit: BoxFit.cover,
-              ),
-              Image.network(
-                'https://picsum.photos/seed/img9/200/200',
-                fit: BoxFit.cover,
-              ),
-            ],
+              );
+            }),
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget _crearHistoria(String titulo, IconData icono, MaterialColor color) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 12.0),
+      child: Column(
+        children: [
+          Container(
+            width: 65,
+            height: 65,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: color[100],
+            ),
+            child: Icon(icono, color: color[800], size: 30),
+          ),
+          const SizedBox(height: 4),
+          Text(titulo, style: const TextStyle(fontSize: 11)),
         ],
       ),
     );

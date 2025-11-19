@@ -33,16 +33,10 @@ class _PantallaActividad10State extends State<PantallaActividad10> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Text(
-            'Contador de clics',
-            style: TextStyle(
-              fontStyle: FontStyle.italic,
-              fontWeight: FontWeight.w900,
-            ),
+        title: const Text(
+            'Contador de Clics (E10)',
           ),
-        ),
-        backgroundColor: Colors.indigo[400],
+       
       ),
       drawer: const MenuDrawer(),
       body: Column(

@@ -16,10 +16,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         // Usamos un color base (verde)
         primarySwatch: Colors.green,
-        
+
         // Personalización de Scaffolds (fondo de pantalla de las apps)
         scaffoldBackgroundColor: Colors.grey[100], // Un gris muy claro
-
         // Personalización de los AppBars
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.green, // Fondo azul
@@ -48,13 +47,13 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      
+
       // Punto 2: Rutas nombradas (esto ya lo tenías bien)
       initialRoute: '/',
       routes: {
         '/': (context) => const SplashScreen(),
         '/home': (context) => const HomeScreen(),
-        
+
         // Rutas Entregas 1-4
         '/nombre': (context) => const PantallaNombre(),
         '/foto': (context) => const PantallaFoto(),
@@ -66,15 +65,9 @@ class MyApp extends StatelessWidget {
         '/responsive': (context) => const PantallaActividad8(),
         '/reto_container': (context) => const PantallaActividad9(),
         '/contador': (context) => const PantallaActividad10(),
-        
-        // Punto 1 (Ruta para el Clon UI)
         '/clon_ui': (context) => const PantallaActividad11(),
-
-        // (NUEVO) Rutas para la nueva entrega
-        // Punto 4 (Entrada 12)
-        '/juego_colores': (context) => const RandomColors(), 
-        // Punto 5 (Entrada 13)
-        '/juego_pulsar': (context) => const PantallaJuegoPulsar(), 
+        '/juego_colores': (context) => const RandomColors(),
+        '/juego_pulsar': (context) => const PantallaJuegoPulsar(),
       },
     );
   }

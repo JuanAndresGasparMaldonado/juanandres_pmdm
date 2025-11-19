@@ -8,7 +8,7 @@ class PantallaNombre extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Nombre y Repositorio")),
+      appBar: AppBar(title: const Text("Nombre y Repositorio (E1)")),
       drawer: const MenuDrawer(),
       body: Center(
         child: Column(

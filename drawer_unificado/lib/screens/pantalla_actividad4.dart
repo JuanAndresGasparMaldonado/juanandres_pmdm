@@ -7,7 +7,7 @@ class PantallaIconos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Iconos en filas")),
+      appBar: AppBar(title: const Text("Iconos en filas (E4)")),
       drawer: const MenuDrawer(),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

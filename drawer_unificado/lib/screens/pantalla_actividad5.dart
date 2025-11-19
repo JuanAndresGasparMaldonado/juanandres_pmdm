@@ -7,7 +7,7 @@ class PantallaImagenes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Imágenes en columnas")),
+      appBar: AppBar(title: const Text("Imágenes en columnas (E5)")),
       drawer: const MenuDrawer(),
       body: Center(
         child: Column(

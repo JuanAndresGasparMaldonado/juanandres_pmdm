@@ -7,7 +7,7 @@ class PantallaMiniaturas extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Miniaturas")),
+      appBar: AppBar(title: const Text("Miniaturas (E3)")),
       drawer: const MenuDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(20),
