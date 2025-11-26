@@ -119,6 +119,13 @@ class MenuDrawer extends StatelessWidget {
               Navigator.pushReplacementNamed(context, '/juego_pulsar');
             },
           ),
+            ListTile(
+              leading: const Icon(Icons.confirmation_number),
+              title: const Text('Adivina el Número (E14)'), // Punto 6
+              onTap: () {
+                Navigator.pushReplacementNamed(context, '/adivina_numero');
+              },
+            ),
         ],
       ),
     );

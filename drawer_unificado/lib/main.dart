@@ -68,6 +68,7 @@ class MyApp extends StatelessWidget {
         '/clon_ui': (context) => const PantallaActividad11(),
         '/juego_colores': (context) => const RandomColors(),
         '/juego_pulsar': (context) => const PantallaJuegoPulsar(),
+        '/adivina_numero': (context) => const AdivinaSimple(),
       },
     );
   }
