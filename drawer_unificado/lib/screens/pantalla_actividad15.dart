@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:drawer_unificado/widgets/menu_drawer.dart';
 
 class PantallaActividad15 extends StatefulWidget {
@@ -9,12 +10,12 @@ class PantallaActividad15 extends StatefulWidget {
 }
 
 class _PantallaActividad15State extends State<PantallaActividad15> {
-  // Variable para el Switch principal
-  bool _vacacionesEnPlaya = true;
+  // Esta es la variable principal, controla si estamos en modo Playa o Montaña
+  bool _esPlaya = true;
 
   // Variables para las opciones de PLAYA
   bool _gustaBuceo = false;
-  bool _gustaTomarSol = false;
+  bool _gustaSurf = false;
 
   // Variables para las opciones de MONTAÑA
   bool _gustaSenderismo = false;
@@ -23,79 +24,110 @@ class _PantallaActividad15State extends State<PantallaActividad15> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Actividad 15: Vacaciones (E15)")),
+      appBar: AppBar(title: const Text("Actividad 15: Formularios (E15)")),
       drawer: const MenuDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: ListView(
           children: [
             const Text(
-              "Selecciona tu destino preferido:",
+              "Datos Personales:",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
 
-            // 1. EL SWITCH PRINCIPAL
-            // Uso SwitchListTile para que tenga texto al lado
-            SwitchListTile(
-              title: Text(
-                _vacacionesEnPlaya
-                    ? "Prefiero la PLAYA"
-                    : "Prefiero la MONTAÑA",
+            // 1. Campo Nombre: Solo permite letras y espacios
+            TextField(
+              decoration: const InputDecoration(
+                labelText: 'Nombre',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.person),
               ),
-              subtitle: const Text("Actívalo para ver opciones de playa"),
-              activeColor: Colors.blue, // Color azul para playa
-              inactiveThumbColor: Colors.green, // Color verde para montaña
-              value: _vacacionesEnPlaya,
+              maxLength: 30,
+              keyboardType: TextInputType.name,
+              inputFormatters: [
+                // Permite solo letras (a-z) y espacios. Incluyo ñ y tildes básicas.
+                FilteringTextInputFormatter.allow(
+                  RegExp(r'[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]'),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+
+            // 2. Campo Edad: Solo permite números
+            TextField(
+              decoration: const InputDecoration(
+                labelText: 'Edad',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.calendar_today),
+              ),
+              maxLength: 3,
+              keyboardType: TextInputType.number,
+              inputFormatters: [
+                FilteringTextInputFormatter
+                    .digitsOnly, // No permite nada que no sea números
+              ],
+            ),
+            const SizedBox(height: 10),
+
+            // 3. Campo Teléfono: Teclado numérico y solo números
+            TextField(
+              decoration: const InputDecoration(
+                labelText: 'Teléfono',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.phone),
+              ),
+              maxLength: 15,
+              keyboardType: TextInputType.phone,
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            ),
+
+            const SizedBox(height: 20),
+            const Divider(thickness: 2),
+            const SizedBox(height: 20),
+
+            // --- Formulario PLAYA O MONTAÑA ---
+            const Text(
+              "Elige tu destino:",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+
+            const SizedBox(height: 10),
+
+            // Switch principal
+            SwitchListTile(
+              title: Text(_esPlaya ? "Modo: PLAYA 🏖️" : "Modo: MONTAÑA 🏔️"),
+              subtitle: const Text("Toca para cambiar de destino"),
+              activeColor: Colors.blue,
+              inactiveThumbColor: Colors.brown,
+              value: _esPlaya,
               onChanged: (bool valor) {
                 setState(() {
-                  _vacacionesEnPlaya = valor;
-                  // Opcional: Reseteamos los checkboxes al cambiar de modo
+                  _esPlaya = valor;
                   _gustaBuceo = false;
-                  _gustaTomarSol = false;
+                  _gustaSurf = false;
                   _gustaSenderismo = false;
                   _gustaEscalada = false;
                 });
               },
             ),
 
-            const Divider(thickness: 2), // Una línea separadora
-            // 2. LÓGICA CONDICIONAL: Si es true mostramos formulario de Playa, si es false el de Montaña
-            if (_vacacionesEnPlaya)
-              _mostrarOpcionesPlaya()
-            else
-              _mostrarOpcionesMontana(),
+            const SizedBox(height: 10),
 
-            const SizedBox(height: 20),
-
-            // Botón para ver en consola lo que has elegido
-            ElevatedButton(
-              onPressed: () {
-                if (_vacacionesEnPlaya) {
-                  print(
-                    "Destino: Playa. Buceo: $_gustaBuceo, Sol: $_gustaTomarSol",
-                  );
-                } else {
-                  print(
-                    "Destino: Montaña. Senderismo: $_gustaSenderismo, Escalada: $_gustaEscalada",
-                  );
-                }
-              },
-              child: const Text("Guardar Selección"),
-            ),
+            // Lógica condicional: ¿Es playa o montaña?
+            if (_esPlaya) _formularioPlaya() else _formularioMontana(),
           ],
         ),
       ),
     );
   }
 
-  // Formulario A: Opciones de Playa
-  Widget _mostrarOpcionesPlaya() {
+  // Opciones para Playa
+  Widget _formularioPlaya() {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          "Actividades Acuáticas:",
+          "Opciones de Playa",
           style: TextStyle(fontSize: 18, color: Colors.blue),
         ),
         CheckboxListTile(
@@ -109,12 +141,12 @@ class _PantallaActividad15State extends State<PantallaActividad15> {
           },
         ),
         CheckboxListTile(
-          title: const Text("Tomar el sol"),
-          secondary: const Icon(Icons.wb_sunny),
-          value: _gustaTomarSol,
+          title: const Text("Hacer Surf"),
+          secondary: const Icon(Icons.surfing),
+          value: _gustaSurf,
           onChanged: (bool? valor) {
             setState(() {
-              _gustaTomarSol = valor!;
+              _gustaSurf = valor!;
             });
           },
         ),
@@ -122,17 +154,16 @@ class _PantallaActividad15State extends State<PantallaActividad15> {
     );
   }
 
-  // Formulario B: Opciones de Montaña
-  Widget _mostrarOpcionesMontana() {
+  // Opciones para Montaña
+  Widget _formularioMontana() {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          "Actividades de Montaña:",
-          style: TextStyle(fontSize: 18, color: Colors.green),
+          "Opciones de Montaña",
+          style: TextStyle(fontSize: 18, color: Colors.brown),
         ),
         CheckboxListTile(
-          title: const Text("Hacer Senderismo"),
+          title: const Text("Senderismo"),
           secondary: const Icon(Icons.directions_walk),
           value: _gustaSenderismo,
           onChanged: (bool? valor) {
