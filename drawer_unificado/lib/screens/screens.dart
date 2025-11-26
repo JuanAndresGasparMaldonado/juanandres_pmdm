@@ -16,3 +16,4 @@ export 'pantalla_actividad11.dart';
 export 'pantalla_actividad12.dart'; 
 export 'pantalla_actividad13.dart';
 export 'pantalla_actividad14.dart';
+export 'pantalla_actividad15.dart';

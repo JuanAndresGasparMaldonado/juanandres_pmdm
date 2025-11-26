@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
+import 'package:drawer_unificado/widgets/menu_drawer.dart';
 
 class AdivinaSimple extends StatefulWidget {
   const AdivinaSimple({super.key});
@@ -39,7 +40,8 @@ class _AdivinaSimpleState extends State<AdivinaSimple> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Adivina el Número")),
+      appBar: AppBar(title: const Text("Adivina el Número (E14)")),
+      drawer: const MenuDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(

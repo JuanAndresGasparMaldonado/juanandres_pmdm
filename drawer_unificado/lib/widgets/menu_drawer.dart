@@ -126,6 +126,13 @@ class MenuDrawer extends StatelessWidget {
                 Navigator.pushReplacementNamed(context, '/adivina_numero');
               },
             ),
+            ListTile(
+              leading: const Icon(Icons.check_box),
+              title: const Text('Formulario Condicional (E15)'), // Punto 7
+              onTap: () {
+                Navigator.pushReplacementNamed(context, '/formulario_condicional');
+              },
+            ),
         ],
       ),
     );
