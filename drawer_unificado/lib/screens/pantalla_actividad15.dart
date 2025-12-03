@@ -98,7 +98,7 @@ class _PantallaActividad15State extends State<PantallaActividad15> {
             SwitchListTile(
               title: Text(_esPlaya ? "Modo: PLAYA 🏖️" : "Modo: MONTAÑA 🏔️"),
               subtitle: const Text("Toca para cambiar de destino"),
-              activeColor: Colors.blue,
+              activeThumbColor: Colors.blue,
               inactiveThumbColor: Colors.brown,
               value: _esPlaya,
               onChanged: (bool valor) {

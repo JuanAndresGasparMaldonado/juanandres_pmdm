@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:drawer_unificado/widgets/menu_drawer.dart';
 import 'dart:async';
 import 'dart:math';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PantallaJuegoPulsar extends StatefulWidget {
   const PantallaJuegoPulsar({super.key});
@@ -23,6 +24,29 @@ class _PantallaJuegoPulsarState extends State<PantallaJuegoPulsar> {
   bool _imagenVisible = false;
 
   final Random _random = Random();
+
+@override
+  void initState() {
+    super.initState();
+    // 2. Al iniciar la pantalla, cargamos los puntos guardados
+    _cargarPuntuacion();
+  }
+
+  // Función para cargar los puntos guardados
+  Future<void> _cargarPuntuacion() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      // Leemos la clave 'puntos_guardados'. Si no existe (es la primera vez), ponemos 0.
+      _puntuacion = prefs.getInt('puntos_guardados') ?? 0;
+    });
+  }
+
+  // Función para guardar la puntuación actual
+  Future<void> _guardarPuntuacion() async {
+    final prefs = await SharedPreferences.getInstance();
+    // Guardamos el valor de _puntuacion en la clave 'puntos_guardados'
+    await prefs.setInt('puntos_guardados', _puntuacion);
+  }
 
   void _iniciarJuego() {
     setState(() {
@@ -66,6 +90,12 @@ class _PantallaJuegoPulsarState extends State<PantallaJuegoPulsar> {
       _left = _random.nextDouble() * (size.width - 80);
       _imagenVisible = true;
     });
+
+    // Guardamos los puntos cada vez que acertamos
+    _guardarPuntuacion();
+
+    _timerImagen?.cancel();
+    _iniciarTimerImagen();
   }
 
   void _onTapImagen() {
@@ -85,6 +115,8 @@ class _PantallaJuegoPulsarState extends State<PantallaJuegoPulsar> {
     setState(() {
       _puntuacion -= 2;
     });
+
+    _guardarPuntuacion();
   }
 
   void _terminarJuego() {
